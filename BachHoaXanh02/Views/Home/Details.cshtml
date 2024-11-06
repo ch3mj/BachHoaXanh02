@@ -1,0 +1,15 @@
+﻿@model BachHoaXanh02.Models.Product
+@{
+    ViewBag.Title = "Chi Tiết Sản Phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="product-details">
+    <img src="@Model.ImageUrl" alt="@Model.Name" />
+    <h2>@Model.Name</h2>
+    <p>@Model.Description</p>
+    <p>Giá: @String.Format("{0:0,0 VNĐ}", Model.Price)</p>
+
+    <!-- Nút "Mua Ngay" được chuyển thành thẻ <a> -->
+    <a href="@Url.Action("AddToCart", "Cart", new { id = Model.Id })" class="button-buy" style="text-decoration: none;">Mua Ngay</a>
+</div>

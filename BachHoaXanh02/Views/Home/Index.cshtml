@@ -1,0 +1,62 @@
+﻿@model BachHoaXanh02.Models.HomeViewModel
+@{
+    ViewBag.Title = "Trang Chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="banner-section">
+    <div class="slider-controls">
+        <button class="slider-button left" onclick="moveSlide('banner-slider', -1)">&#10094;</button>
+        <button class="slider-button right" onclick="moveSlide('banner-slider', 1)">&#10095;</button>
+    </div>
+    <div class="banner-slider" id="banner-slider">
+        @foreach (var banner in Model.Banners)
+        {
+            <div class="banner">
+                <img src="@banner.ImageUrl" alt="@banner.AltText" />
+            </div>
+        }
+    </div>
+</div>
+
+<section id="products" class="product-section">
+    <h2>Sản Phẩm Nổi Bật</h2>
+    <div class="slider-controls">
+        <button class="slider-button left" onclick="moveSlide('featured', -1)">&#10094;</button>
+        <button class="slider-button right" onclick="moveSlide('featured', 1)">&#10095;</button>
+    </div>
+    <div class="product-slider" id="featured">
+        @foreach (var product in Model.FeaturedProducts)
+        {
+            <div class="product">
+                <img src="@product.ImageUrl" alt="@product.Name" />
+                <h3>@product.Name</h3>
+                <p>Giá: @String.Format("{0:0,0 VNĐ}", product.Price)</p>
+                <button class="button-buy">
+                    <a href="@Url.Action("Details", "Home", new { id = product.Id })" style="text-decoration: none; color: inherit;">Mua</a>
+                </button>
+            </div>
+        }
+    </div>
+</section>
+
+<section id="flash-sale" class="product-section">
+    <h2>Flash Sale</h2>
+    <div class="slider-controls">
+        <button class="slider-button left" onclick="moveSlide('flashSale', -1)">&#10094;</button>
+        <button class="slider-button right" onclick="moveSlide('flashSale', 1)">&#10095;</button>
+    </div>
+    <div class="product-slider" id="flashSale">
+        @foreach (var product in Model.FlashSaleProducts)
+        {
+            <div class="product">
+                <img src="@product.ImageUrl" alt="@product.Name" />
+                <h3>@product.Name</h3>
+                <p>Giá: @String.Format("{0:0,0 VNĐ}", product.Price)</p>
+                <button class="button-buy">
+                    <a href="@Url.Action("Details", "Home", new { id = product.Id })" style="text-decoration: none; color: inherit;">Mua</a>
+                </button>
+            </div>
+        }
+    </div>
+</section>
